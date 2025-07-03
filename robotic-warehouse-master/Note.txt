@@ -1,0 +1,44 @@
+1. 动作类型：
+    class Action(Enum):
+        NOOP = 0
+        FORWARD = 1
+        LEFT = 2
+        RIGHT = 3
+        TOGGLE_LOAD = 4
+
+    class Direction(Enum):
+        UP = 0
+        DOWN = 1
+        LEFT = 2
+        RIGHT = 3
+
+2. Grid尺寸：
+    Creates a grid world where multiple agents (robots)
+    are supposed to collect shelfs, bring them to a goal
+    and then return them.
+    .. note:
+        The grid looks like this:
+
+        shelf
+        columns
+            vv
+        ----------
+        -XX-XX-XX-        ^
+        -XX-XX-XX-  Column Height
+        -XX-XX-XX-        v
+        ----------
+        -XX----XX-   <\
+        -XX----XX-   <- Shelf Rows
+        -XX----XX-   </
+        ----------
+        ----GG----
+
+        G: is the goal positions where agents are rewarded if
+        they bring the correct shelfs.
+
+        The final grid size will be
+        height: (column_height + 1) * shelf_rows + 2
+        width: (2 + 1) * shelf_columns + 1
+
+        The bottom-middle column will be removed to allow for
+        robot queuing next to the goal locations
